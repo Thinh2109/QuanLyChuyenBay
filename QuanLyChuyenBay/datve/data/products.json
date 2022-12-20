@@ -1,0 +1,29 @@
+[{
+ "id": 1,
+ "place": "Đà Lạt",
+ "to": "Hồ Chí Minh",
+ "price": 350000,
+ "image": "images/hcm.jpg",
+ "category_id": 1
+}, {
+ "id": 2,
+ "place": "Đà Nẵng",
+ "to": "Nha Trang",
+ "price": 570000,
+ "image": "images/nhatrang.jpg",
+ "category_id": 1
+}, {
+ "id": 3,
+ "place": "Bà Rịa-Vũng Tàu",
+ "to": "Hà Nội",
+ "price": 570000,
+ "image": "images/hanoi.jpg",
+ "category_id": 2
+}, {
+ "id": 4,
+ "place": "Hà Nội",
+ "to": "Phú Quốc",
+ "price": 800000,
+ "image": "images/phuquoc.jpg",
+ "category_id": 2
+}]

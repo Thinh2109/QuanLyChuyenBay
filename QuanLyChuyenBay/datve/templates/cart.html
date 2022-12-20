@@ -1,0 +1,49 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}THANH TOÁN{% endblock %}
+
+{% block body %}
+<h1 class="text-center text-danger">Thanh toán vé</h1>
+
+{% if 'cart' in session and session['cart'] %}
+<table class="table">
+    <tr>
+        <th>Mã vé</th>
+        <th>Nơi xuất phát</th>
+        <th>Nơi đến</th>
+        <th>Giá vé</th>
+        <th>Số lượng vé</th>
+    </tr>
+    {% for c in session['cart'].values() %}
+    <tr id="product{{ c.id }}">
+        <td>{{ c.id }}</td>
+        <td>{{ c.place }}</td>
+        <td>{{ c.to }}</td>
+        <td>{{ "{:,.1f}".format(c.price) }}</td>
+        <td>
+            <div class="form-group">
+                <input type="number" min="1" onblur="updateCart({{ c.id }}, this)" value="{{ c.quantity }}" class="form-control">
+            </div>
+        </td>
+        <td>
+            <input type="button" value="Xóa" onclick="deleteCart({{ c.id }})" class="btn btn-danger"/>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="alert alert-info">
+    <h4>Tổng số vé: <span class="cart-counter">{{ stats.total_quantity }}</span> </h4>
+    <h4>Tổng tiền: <span id="total-amount"> {{ "{:,.1f}".format(stats.total_amount) }} VND</span></h4>
+</div>
+
+    {% if current_user.is_authenticated %}
+    <input type="button" value="Thanh toán" class="btn btn-success" onclick="pay()">
+    {% else %}
+    <a href="{{ url_for('user_signin', next='cart') }}">Quý khách cần đăng nhập để thanh toán...</a>
+    {% endif %}
+    <br><br>
+{% else %}
+<p style="color: red"><i>Chưa có vé nào được đặt!!</i></p>
+{% endif %}
+{% endblock %}

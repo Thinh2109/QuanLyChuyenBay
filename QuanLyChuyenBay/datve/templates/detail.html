@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết chuyến bay</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
+</head>
+<body>
+    <h1 class="subject">CHI TIẾT CHUYẾN BAY</h1>
+    <div class="container flex">
+        <div>
+            <img src="{{ url_for('static', filename=product.image) }}" width="500" alt="{{ product.to }}"/>
+        </div>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <div>
+            <h2>Điểm xuất phát: {{ product.place }}</h2>
+            <h2>Điểm đến: {{ product.to }}</h2>
+            <h4>Giá vé: {{ "{:,.1f}".format(product.price) }}</h4>
+        </div>
+    </div>
+</body>
+</html>

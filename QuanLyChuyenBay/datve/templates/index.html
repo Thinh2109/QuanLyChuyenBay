@@ -1,0 +1,31 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Trang chủ{% endblock %}
+
+{% block body %}
+<br>
+<h1 class="subject">LỊCH CHUYẾN BAY</h1>
+<br>
+
+<div class="container">
+        <div class="row">
+            {% if products %}
+            {% for p in products %}
+            <div class="col-md-3 col-xs-12" style="padding: 5px">
+                <div class="card" style="weight: 900%; height: 100%">
+                    <img class="card-img-top" src="{{ url_for('static', filename=p.image) }}" alt="{{ p.to }}" width="300" height="150">
+                    <div class="card-body">
+                        <h4 class="card-title" style="font-size: 20px; font-weight: 300;">{{ p.place }}<br>đến {{ p.to }}</h4>
+                        <p class="card-text">{{ "{:,.1f}".format(p.price) }} VND</p>
+                        <a href="{{ url_for('detail', product_id=p.id) }}" class="btn btn-primary">Xem chi tiết</a>
+                        <a href="#" class="btn btn-primary" onclick="addToCart({{ p.id }}, '{{ p.place }}', '{{ p.to }}', {{ p.price }})">Đặt vé</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p style="text-align: center;color: red;font-size: 20px"><b><i>Chuyến bay đến địa điểm này chưa cập nhật. Chân thành xin lỗi quý khách!!!</i></b></p>
+        {% endif %}
+</div>
+{% endblock %}

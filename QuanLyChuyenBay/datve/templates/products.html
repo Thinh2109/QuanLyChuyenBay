@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách chuyến bay</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container">
+        <h1 class="subject">DANH SÁCH CHUYẾN BAY</h1>
+
+        <form>
+            <input type="text" name="keyword" placeholder="Nhập nơi cần đến..."/>
+            <input type="number" name="from_price" placeholder="Nhập giá vé tối thiểu..."/>
+            <input type="submit" value="Tìm"/>
+        </form>
+
+        <table border="2" class="product">
+                <tr>
+                    <th></th>
+                    <th>Mã vé</th>
+                    <th>Nơi xuất phát</th>
+                    <th>Nơi đến</th>
+                    <th>Giá vé</th>
+                </tr>
+                {% for p in products %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('detail', product_id=p.id) }}">
+                         <img src="{{ url_for('static', filename=p.image) }}" width="200" alt="{{ p.to }}"/>
+                        </a>
+                    </td>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.place }}</td>
+                    <td>{{ p.to }}</td>
+                    <td>{{ "{:,.1f}".format(p.price) }} VND</td>
+                </tr>
+                {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
